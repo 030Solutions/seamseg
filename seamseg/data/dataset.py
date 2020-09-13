@@ -5,8 +5,8 @@ from os import path
 import numpy as np
 import torch.utils.data as data
 import umsgpack
-from PIL import Image
-
+from PIL import ImageFile, Image
+ImageFile.LOAD_TRUNCATED_IMAGES=True
 
 class ISSDataset(data.Dataset):
     """Instance segmentation dataset
@@ -171,23 +171,30 @@ class ISSTestDataset(data.Dataset):
     def __init__(self, in_dir, transform):
         super(ISSTestDataset, self).__init__()
         self.in_dir = in_dir
+        self.out_dir = "../output_data/"
+
+        output_paths = list(chain(
+                *(glob.iglob(path.join(self.out_dir, '**', ext), recursive=True) for ext in ISSTestDataset._EXTENSIONS)))
+        files_already_processed = [f.replace(self.out_dir, self.in_dir) for f in output_paths]
+
         self.transform = transform
 
         # Find all images
         self._images = []
         for img_path in chain(
                 *(glob.iglob(path.join(self.in_dir, '**', ext), recursive=True) for ext in ISSTestDataset._EXTENSIONS)):
-            _, name_with_ext = path.split(img_path)
-            idx, _ = path.splitext(name_with_ext)
+            if not img_path in files_already_processed:
+                _, name_with_ext = path.split(img_path)
+                idx, _ = path.splitext(name_with_ext)
 
-            with Image.open(img_path) as img_raw:
-                size = (img_raw.size[1], img_raw.size[0])
+                with Image.open(img_path) as img_raw:
+                    size = (img_raw.size[1], img_raw.size[0])
 
-            self._images.append({
-                "idx": idx,
-                "path": img_path,
-                "size": size,
-            })
+                self._images.append({
+                    "idx": idx,
+                    "path": img_path,
+                    "size": size,
+                })
 
     @property
     def img_sizes(self):
