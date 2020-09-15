@@ -181,8 +181,8 @@ class ISSTestDataset(data.Dataset):
 
         # Find all images
         self._images = []
-        for img_path in chain(
-                *(glob.iglob(path.join(self.in_dir, '**', ext), recursive=True) for ext in ISSTestDataset._EXTENSIONS)):
+        for img_path in sorted(list(chain(
+                *(glob.iglob(path.join(self.in_dir, '**', ext), recursive=True) for ext in ISSTestDataset._EXTENSIONS)))):
             if not img_path in files_already_processed:
                 _, name_with_ext = path.split(img_path)
                 idx, _ = path.splitext(name_with_ext)
