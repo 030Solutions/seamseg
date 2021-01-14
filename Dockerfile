@@ -13,7 +13,7 @@ RUN echo "# /bin/bash\nrsync -a -f"+ */" -f"- *" /mnt/Festpladder/datasets/riege
 RUN chmod 777 ./run.sh
 #RUN pip install -r requirements.txt
 # python command
-#python -m torch.distributed.launch --nproc_per_node=1  test_panoptic.py --meta ../saved_models/metadata.bin --log_dir ../log_dir ../saved_models/config.ini ../saved_models/seamseg_r50_vistas.tar ../input_data/ ../output_data/
+#python -m torch.distributed.launch --nproc_per_node=1 test_panoptic_write_classes.py --meta ../saved_models/metadata.bin --log_dir ../log_dir ../saved_models/config.ini ../saved_models/seamseg_r50_vistas.tar ../input_data/ ../output_data/
 
 # docker command
 #docker run --ipc=host  --runtime=nvidia -it -v /mnt/Festpladder/datasets/riegel/imagery_no_pano/:/seamseg/input_data/ -v /mnt/Festpladder/datasets/riegel/imagery_semantic/:/seamseg/output_data --rm seamseg /bin/bash

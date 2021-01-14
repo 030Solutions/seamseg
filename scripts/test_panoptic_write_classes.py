@@ -12,6 +12,7 @@ from PIL import Image
 from skimage.morphology import dilation
 from skimage.segmentation import find_boundaries
 from torch import distributed
+from tqdm import tqdm
 
 import seamseg.models as models
 from seamseg.algos.detection import PredictionGenerator as BbxPredictionGenerator, DetectionLoss, \
@@ -190,7 +191,9 @@ def test(model, dataloader, **varargs):
     save_function = varargs["save_function"]
 
     data_time = time.time()
-    for it, batch in enumerate(dataloader):
+    pbar = tqdm(enumerate(dataloader))
+    for it, batch in pbar:
+        pbar.set_postfix({'max_iterations': len(dataloader)})
         with torch.no_grad():
             # Extract data
             img = batch["img"].cuda(device=varargs["device"], non_blocking=True)
@@ -242,7 +245,7 @@ def ensure_dir(dir_path):
         pass
 
 
-def save_prediction_image(_, panoptic_pred, img_info, out_dir, colors, num_stuff, blend=False):
+def save_prediction_image(_, panoptic_pred, img_info, out_dir, colors, num_stuff, blend=False, save_raw=False):
     msk, cat, obj, iscrowd = panoptic_pred
 
     img = Image.open(img_info["abs_path"])
@@ -252,19 +255,25 @@ def save_prediction_image(_, panoptic_pred, img_info, out_dir, colors, num_stuff
     img_name, _ = path.splitext(img_name)
     out_dir = path.join(out_dir, folder)
     ensure_dir(out_dir)
-    torch.save(panoptic_pred, path.join(out_dir, img_name + "_panoptic_pred.torch"))
+    if save_raw:
+        torch.save(panoptic_pred, path.join(out_dir, img_name + "_panoptic_pred.torch"))
+    out_path_cat = path.join(out_dir, img_name + "_cat.png")
     if blend:
         out_path = path.join(out_dir, img_name + "_blend.jpg")
     else:
-        out_path = path.join(out_dir, img_name + ".jpg")
+        out_path = path.join(out_dir, img_name + ".png")
     # Render semantic
     sem = cat[msk].numpy()
+    np.save(open(path.join(out_dir, img_name + "cat.npz"), "wb"), cat)
+    np.save(open(path.join(out_dir, img_name + "msk.npz"), "wb"), msk)
+    np.save(open(path.join(out_dir, img_name + "iscrowd.npz"), "wb"), iscrowd)
     crowd = iscrowd[msk].numpy()
     sem[crowd == 1] = 255
 
     sem_img = Image.fromarray(colors[sem])
-    sem_img = sem_img.resize(img_info["original_size"][::-1])
-
+    sem_img = sem_img.resize(img_info["original_size"][::-1], Image.NEAREST)
+    sem_img_cat = Image.fromarray(sem.astype(np.uint8))
+    sem_img_cat = sem_img_cat.resize(img_info["original_size"][::-1], Image.NEAREST)
     # Render contours
     is_background = (sem < num_stuff) | (sem == 255)
     msk = msk.numpy()
@@ -284,6 +293,7 @@ def save_prediction_image(_, panoptic_pred, img_info, out_dir, colors, num_stuff
     else:
         out = sem_img
     out.convert(mode="RGB").save(out_path)
+    sem_img_cat.convert(mode="RGB").save(out_path_cat)
 
 
 def save_prediction_raw(raw_pred, _, img_info, out_dir):

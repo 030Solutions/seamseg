@@ -273,7 +273,7 @@ def save_prediction_image(_, panoptic_pred, img_info, out_dir, colors, num_stuff
     contours = np.expand_dims(contours, -1).repeat(4, -1)
     contours_img = Image.fromarray(contours, mode="RGBA")
     contours_img = contours_img.resize(img_info["original_size"][::-1])
-
+    print("img", img.size, "sem_img", sem_img.size)
     # Compose final image and save
     out = Image.blend(img, sem_img, 0.5).convert(mode="RGBA")
     out = Image.alpha_composite(out, contours_img)
@@ -340,7 +340,7 @@ def main(args):
             else:
                 palette.append((0, 0, 0))
         palette = np.array(palette, dtype=np.uint8)
-
+        print("PALETTE:", palette)
         save_function = partial(
             save_prediction_image, out_dir=args.out_dir, colors=palette, num_stuff=meta["num_stuff"])
     test(model, test_dataloader, device=device, summary=None,
