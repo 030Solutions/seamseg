@@ -75,7 +75,7 @@ def make_dataloader(args, config, rank, world_size):
     test_tf = ISSTestTransform(config.getint("shortest_size"),
                                config.getstruct("rgb_mean"),
                                config.getstruct("rgb_std"))
-    test_db = ISSTestDataset(args.data, test_tf)
+    test_db = ISSTestDataset(args.data, test_tf) 
     test_sampler = DistributedARBatchSampler(test_db, config.getint("val_batch_size"), world_size, rank, False)
     test_dl = data.DataLoader(test_db,
                               batch_sampler=test_sampler,
