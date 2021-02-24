@@ -1,0 +1,66 @@
+id, color,readable,name
+0, [196, 196, 196], Curb, construction--barrier--curb
+1, [190, 153, 153], Fence, construction--barrier--fence
+2, [180, 165, 180], Guard Rail, construction--barrier--guard-rail
+3, [90, 120, 150], Barrier, construction--barrier--other-barrier
+4, [102, 102, 156], Wall, construction--barrier--wall
+5, [128, 64, 255], Bike Lane, construction--flat--bike-lane
+6, [170, 170, 170], Curb Cut, construction--flat--curb-cut
+7, [250, 170, 160], Parking, construction--flat--parking
+8, [96, 96, 96], Pedestrian Area, construction--flat--pedestrian-area
+9, [230, 150, 140], Rail Track, construction--flat--rail-track
+10, [128, 64, 128], Road, construction--flat--road
+11, [110, 110, 110], Service Lane, construction--flat--service-lane
+12, [244, 35, 232], Sidewalk, construction--flat--sidewalk
+13, [150, 100, 100], Bridge, construction--structure--bridge
+14, [70, 70, 70], Building, construction--structure--building
+15, [150, 120, 90], Tunnel, construction--structure--tunnel
+16, [255, 255, 255], Lane Marking - General, marking--general
+17, [64, 170, 64], Mountain, nature--mountain
+18, [230, 160, 50], Sand, nature--sand
+19, [70, 130, 180], Sky, nature--sky
+20, [190, 255, 255], Snow, nature--snow
+21, [152, 251, 152], Terrain, nature--terrain
+22, [107, 142, 35], Vegetation, nature--vegetation
+23, [0, 170, 30], Water, nature--water
+24, [70, 100, 150], Pothole, object--pothole
+25, [0, 80, 100], On Rails, object--vehicle--on-rails
+26, [32, 32, 32], Car Mount, void--car-mount
+27, [120, 10, 10], Ego Vehicle, void--ego-vehicle
+28, [165, 42, 42], Bird, animal--bird
+29, [0, 192, 0], Ground Animal, animal--ground-animal
+30, [140, 140, 200], Crosswalk - Plain, construction--flat--crosswalk-plain
+31, [220, 20, 60], Person, human--person
+32, [255, 0, 0], Bicyclist, human--rider--bicyclist
+33, [255, 0, 100], Motorcyclist, human--rider--motorcyclist
+34, [255, 0, 200], Other Rider, human--rider--other-rider
+35, [200, 128, 128], Lane Marking - Crosswalk, marking--crosswalk-zebra
+36, [255, 255, 128], Banner, object--banner
+37, [250, 0, 30], Bench, object--bench
+38, [100, 140, 180], Bike Rack, object--bike-rack
+39, [220, 220, 220], Billboard, object--billboard
+40, [220, 128, 128], Catch Basin, object--catch-basin
+41, [222, 40, 40], CCTV Camera, object--cctv-camera
+42, [100, 170, 30], Fire Hydrant, object--fire-hydrant
+43, [40, 40, 40], Junction Box, object--junction-box
+44, [33, 33, 33], Mailbox, object--mailbox
+45, [100, 128, 160], Manhole, object--manhole
+46, [142, 0, 0], Phone Booth, object--phone-booth
+47, [210, 170, 100], Street Light, object--street-light
+48, [153, 153, 153], Pole, object--support--pole
+49, [128, 128, 128], Traffic Sign Frame, object--support--traffic-sign-frame
+50, [0, 0, 80], Utility Pole, object--support--utility-pole
+51, [250, 170, 30], Traffic Light, object--traffic-light
+52, [192, 192, 192], Traffic Sign (Back), object--traffic-sign--back
+53, [220, 220, 0], Traffic Sign (Front), object--traffic-sign--front
+54, [140, 140, 20], Trash Can, object--trash-can
+55, [119, 11, 32], Bicycle, object--vehicle--bicycle
+56, [150, 0, 255], Boat, object--vehicle--boat
+57, [0, 60, 100], Bus, object--vehicle--bus
+58, [0, 0, 142], Car, object--vehicle--car
+59, [0, 0, 90], Caravan, object--vehicle--caravan
+60, [0, 0, 230], Motorcycle, object--vehicle--motorcycle
+61, [128, 64, 64], Other Vehicle, object--vehicle--other-vehicle
+62, [0, 0, 110], Trailer, object--vehicle--trailer
+63, [0, 0, 70], Truck, object--vehicle--truck
+64, [0, 0, 192], Wheeled Slow, object--vehicle--wheeled-slow
