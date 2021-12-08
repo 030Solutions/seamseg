@@ -1,0 +1,327 @@
+[
+  {
+    "name": "construction--barrier--curb",
+    "color": "#c4c4c4",
+    "attributes": []
+  },
+  {
+    "name": "construction--barrier--fence",
+    "color": "#be9999",
+    "attributes": []
+  },
+  {
+    "name": "construction--barrier--guard-rail",
+    "color": "#b4a5b4",
+    "attributes": []
+  },
+  {
+    "name": "construction--barrier--other-barrier",
+    "color": "#5a7896",
+    "attributes": []
+  },
+  {
+    "name": "construction--barrier--wall",
+    "color": "#66669c",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--bike-lane",
+    "color": "#8040ff",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--curb-cut",
+    "color": "#aaaaaa",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--parking",
+    "color": "#faaaa0",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--pedestrian-area",
+    "color": "#606060",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--rail-track",
+    "color": "#e6968c",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--road",
+    "color": "#804080",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--service-lane",
+    "color": "#6e6e6e",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--sidewalk",
+    "color": "#f423e8",
+    "attributes": []
+  },
+  {
+    "name": "construction--structure--bridge",
+    "color": "#966464",
+    "attributes": []
+  },
+  {
+    "name": "construction--structure--building",
+    "color": "#464646",
+    "attributes": []
+  },
+  {
+    "name": "construction--structure--tunnel",
+    "color": "#96785a",
+    "attributes": []
+  },
+  {
+    "name": "marking--general",
+    "color": "#ffffff",
+    "attributes": []
+  },
+  {
+    "name": "nature--mountain",
+    "color": "#40aa40",
+    "attributes": []
+  },
+  {
+    "name": "nature--sand",
+    "color": "#e6a032",
+    "attributes": []
+  },
+  {
+    "name": "nature--sky",
+    "color": "#4682b4",
+    "attributes": []
+  },
+  {
+    "name": "nature--snow",
+    "color": "#beffff",
+    "attributes": []
+  },
+  {
+    "name": "nature--terrain",
+    "color": "#98fb98",
+    "attributes": []
+  },
+  {
+    "name": "nature--vegetation",
+    "color": "#6b8e23",
+    "attributes": []
+  },
+  {
+    "name": "nature--water",
+    "color": "#00aa1e",
+    "attributes": []
+  },
+  {
+    "name": "object--pothole",
+    "color": "#466496",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--on-rails",
+    "color": "#005064",
+    "attributes": []
+  },
+  {
+    "name": "void--car-mount",
+    "color": "#202020",
+    "attributes": []
+  },
+  {
+    "name": "void--ego-vehicle",
+    "color": "#780a0a",
+    "attributes": []
+  },
+  {
+    "name": "animal--bird",
+    "color": "#a52a2a",
+    "attributes": []
+  },
+  {
+    "name": "animal--ground-animal",
+    "color": "#00c000",
+    "attributes": []
+  },
+  {
+    "name": "construction--flat--crosswalk-plain",
+    "color": "#8c8cc8",
+    "attributes": []
+  },
+  {
+    "name": "human--person",
+    "color": "#dc143c",
+    "attributes": []
+  },
+  {
+    "name": "human--rider--bicyclist",
+    "color": "#ff0000",
+    "attributes": []
+  },
+  {
+    "name": "human--rider--motorcyclist",
+    "color": "#ff0064",
+    "attributes": []
+  },
+  {
+    "name": "human--rider--other-rider",
+    "color": "#ff00c8",
+    "attributes": []
+  },
+  {
+    "name": "marking--crosswalk-zebra",
+    "color": "#c88080",
+    "attributes": []
+  },
+  {
+    "name": "object--banner",
+    "color": "#ffff80",
+    "attributes": []
+  },
+  {
+    "name": "object--bench",
+    "color": "#fa001e",
+    "attributes": []
+  },
+  {
+    "name": "object--bike-rack",
+    "color": "#648cb4",
+    "attributes": []
+  },
+  {
+    "name": "object--billboard",
+    "color": "#dcdcdc",
+    "attributes": []
+  },
+  {
+    "name": "object--catch-basin",
+    "color": "#dc8080",
+    "attributes": []
+  },
+  {
+    "name": "object--cctv-camera",
+    "color": "#de2828",
+    "attributes": []
+  },
+  {
+    "name": "object--fire-hydrant",
+    "color": "#64aa1e",
+    "attributes": []
+  },
+  {
+    "name": "object--junction-box",
+    "color": "#282828",
+    "attributes": []
+  },
+  {
+    "name": "object--mailbox",
+    "color": "#212121",
+    "attributes": []
+  },
+  {
+    "name": "object--manhole",
+    "color": "#6480a0",
+    "attributes": []
+  },
+  {
+    "name": "object--phone-booth",
+    "color": "#8e0000",
+    "attributes": []
+  },
+  {
+    "name": "object--street-light",
+    "color": "#d2aa64",
+    "attributes": []
+  },
+  {
+    "name": "object--support--pole",
+    "color": "#999999",
+    "attributes": []
+  },
+  {
+    "name": "object--support--traffic-sign-frame",
+    "color": "#808080",
+    "attributes": []
+  },
+  {
+    "name": "object--support--utility-pole",
+    "color": "#000050",
+    "attributes": []
+  },
+  {
+    "name": "object--traffic-light",
+    "color": "#faaa1e",
+    "attributes": []
+  },
+  {
+    "name": "object--traffic-sign--back",
+    "color": "#c0c0c0",
+    "attributes": []
+  },
+  {
+    "name": "object--traffic-sign--front",
+    "color": "#dcdc00",
+    "attributes": []
+  },
+  {
+    "name": "object--trash-can",
+    "color": "#8c8c14",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--bicycle",
+    "color": "#770b20",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--boat",
+    "color": "#9600ff",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--bus",
+    "color": "#003c64",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--car",
+    "color": "#00008e",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--caravan",
+    "color": "#00005a",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--motorcycle",
+    "color": "#0000e6",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--other-vehicle",
+    "color": "#804040",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--trailer",
+    "color": "#00006e",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--truck",
+    "color": "#000046",
+    "attributes": []
+  },
+  {
+    "name": "object--vehicle--wheeled-slow",
+    "color": "#0000c0",
+    "attributes": []
+  }
+]
