@@ -264,9 +264,9 @@ def save_prediction_image(_, panoptic_pred, img_info, out_dir, colors, num_stuff
         out_path = path.join(out_dir, img_name + ".png")
     # Render semantic
     sem = cat[msk].numpy()
-    np.save(open(path.join(out_dir, img_name + "cat.npz"), "wb"), cat)
-    np.save(open(path.join(out_dir, img_name + "msk.npz"), "wb"), msk)
-    np.save(open(path.join(out_dir, img_name + "iscrowd.npz"), "wb"), iscrowd)
+    # np.save(open(path.join(out_dir, img_name + "cat.npz"), "wb"), cat)
+    # np.save(open(path.join(out_dir, img_name + "msk.npz"), "wb"), msk)
+    # np.save(open(path.join(out_dir, img_name + "iscrowd.npz"), "wb"), iscrowd)
     crowd = iscrowd[msk].numpy()
     sem[crowd == 1] = 255
 

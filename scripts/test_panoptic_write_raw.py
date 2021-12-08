@@ -202,7 +202,7 @@ def test(model, dataloader, **varargs):
             data_time_meter.update(torch.tensor(time.time() - data_time))
 
             batch_time = time.time()
-
+            print(img[0].shape)
             # Run network
             _, pred, _ = model(img=img, do_loss=False, do_prediction=True)
 
@@ -259,7 +259,7 @@ def save_prediction_image(raw_pred, panoptic_pred, img_info, out_dir, colors, nu
     # save raw segmentation
     save_prediction_raw(raw_pred, panoptic_pred, img_info, out_dir + "/outputs_raw")
 
-    out_path = path.join(out_dir, "images_output", img_name + ".jpg")
+    out_path = path.join(out_dir, img_name + ".jpg")
 
     # Render semantic
     sem = cat[msk].numpy()
@@ -287,6 +287,12 @@ def save_prediction_image(raw_pred, panoptic_pred, img_info, out_dir, colors, nu
     out.convert(mode="RGB").save(out_path)
 
 
+def convert_to_numpy(value):
+    if value is not None:
+        return value.to('cpu').detach().numpy()
+    else:
+        value
+
 def save_prediction_raw(raw_pred, _, img_info, out_dir):
     # Prepare folders and paths
     folder, img_name = path.split(img_info["rel_path"])
@@ -294,17 +300,39 @@ def save_prediction_raw(raw_pred, _, img_info, out_dir):
     out_dir = path.join(out_dir, folder)
     ensure_dir(out_dir)
     out_path = path.join(out_dir, img_name + ".pkl")
+    # convert to numpy format
+
 
     out_data = {
-        # "sem_pred": raw_pred[0].to('cpu').detach().numpy(),
-        "bbx_pred": raw_pred[1].to('cpu').detach().numpy(),
-        "cls_pred": raw_pred[2].to('cpu').detach().numpy(),
-        "obj_pred": raw_pred[3].to('cpu').detach().numpy(),
-        "msk_pred": raw_pred[4].to('cpu').detach().numpy()
+        # "sem_pred": convert_to_numpy(raw_pred[0]),
+        "bbx_pred": convert_to_numpy(raw_pred[1]),
+        "cls_pred": convert_to_numpy(raw_pred[2]),
+        "obj_pred": convert_to_numpy(raw_pred[3]),
+        "msk_pred": convert_to_numpy(raw_pred[4])
     }
     pickle.dump(out_data, open(out_path, 'wb'))
 
+def rgb_to_hex(color_rgb):
+    return '%02x%02x%02x' % tuple(color_rgb)
 
+def create_cvat_label_definition(meta):
+    with open("cvat_label_def.txt", "w") as f:
+        f.write("[\n")
+        i = 0
+        for category, color in zip(meta['categories'], meta['palette']):
+
+            # f"    \"id\": \"{i}\", \n" \
+            label_string = f"  {{\n" \
+                           f"    \"name\": \"{category}\",\n" \
+                           f"    \"color\": \"#{rgb_to_hex(color)}\",\n" \
+                           f"    \"attributes\": []\n" \
+                           f"  }}"
+            if i < (len(meta['categories']) - 1): # last item
+                label_string += ",\n"
+            else:
+                label_string += "\n]"
+            f.write(label_string)
+            i += 1
 def main(args):
     # Initialize multi-processing
     distributed.init_process_group(backend='nccl', init_method='env://')
@@ -322,7 +350,7 @@ def main(args):
     # Create dataloader
     test_dataloader = make_dataloader(args, config, rank, world_size)
     meta = load_meta(args.meta)
-
+    create_cvat_label_definition(meta)
     # Create model
     model = make_model(config, meta["num_thing"], meta["num_stuff"])
 
@@ -354,6 +382,13 @@ def main(args):
          log_interval=config["general"].getint("log_interval"), save_function=save_function,
          make_panoptic=panoptic_preprocessing, num_stuff=meta["num_stuff"])
 
-
+    # # mapping for classes mapillary: https://github.com/mapillary/seamseg/issues/18
+    # num_stuff = meta["num_stuff"]
+    # categories = meta["categories"]
+    # # Class name of the i-th detected instance
+    # class_name = categories[num_stuff + cls_pred[i] - 1]
+    #
+    # # Name of the class predicted at pixel (i, j) of the segmentation mask
+    # class_name = categories[sem_pred[i, j]]
 if __name__ == "__main__":
     main(parser.parse_args())
