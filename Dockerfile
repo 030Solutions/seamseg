@@ -5,7 +5,7 @@ RUN ls -lh /usr/local/
 RUN pip install --upgrade pip
 RUN pip install --ignore-installed --upgrade certifi 
 RUN pip install pillow numpy umsgpack tqdm scikit-image pycocotools \
-    git+git://github.com/waspinator/pycococreator.git@0.2.0 \
+    git+https://github.com/waspinator/pycococreator.git@0.2.0 \
     git+https://github.com/mapillary/inplace_abn.git
 RUN pip install -e .
 WORKDIR /seamseg/scripts
